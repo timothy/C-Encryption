@@ -17,7 +17,11 @@ public:
 	virtual void encrypt(std::string key) = 0; // Pure virtual method
 	virtual void decrypt(std::string key) = 0; // Pure virtual method
 	virtual ~Secret() {};
-	void display();
+
+	//I added display here and took it out of the other areas.
+	void display() {
+		std::cout << message << std::endl;
+	}
 
 }; // ----------- End of Secret Class -----------
 
@@ -26,13 +30,8 @@ class Caesar : public Secret {
 public:
 	Caesar(std::string s = "Caesar Message") : Secret(s) {} //Constructor
 
-	void encrypt(std::string key);
-	void decrypt(std::string key);
-	
-	void display() {
-		std::cout << message << std::endl;
-	}
-	
+	void encrypt(std::string key) override;
+	void decrypt(std::string key) override;
 
 }; // ----------- End of Caesar Class -----------
 
@@ -42,12 +41,8 @@ class Vigenere : public Secret {
 public:
 	Vigenere(std::string s = "Vigenere Message") : Secret(s) {} //Constructor
 
-	void encrypt(std::string key);
-	void decrypt(std::string key);
-
-	void display() {
-		std::cout << message << std::endl;
-	}
+	void encrypt(std::string key) override;
+	void decrypt(std::string key) override;
 
 }; // ----------- End of Vigenere Class -----------
 
@@ -57,12 +52,8 @@ class Autokey : public Secret {
 public:
 	Autokey(std::string s = "Autokey Message") : Secret(s) {} //Constructor
 
-	void encrypt(std::string key);
-	void decrypt(std::string key);
-
-	void display() {
-		std::cout << message << std::endl;
-	}
+	void encrypt(std::string key) override;
+	void decrypt(std::string key) override;
 
 }; // ----------- End of Autokey Class -----------
 
