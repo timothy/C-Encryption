@@ -5,33 +5,43 @@
 
 class Secret {
 protected:
-	bool isEncrypted;
-	std::string message;
+    bool isEncrypted;
+    std::string message;
 
-public: 
-	Secret(std::string s = "Generic Message", bool flag = false){
-		message = s;
-		isEncrypted = flag;
-	}
+    char shifter(char, int);
 
-	virtual void encrypt(std::string key) = 0; // Pure virtual method
-	virtual void decrypt(std::string key) = 0; // Pure virtual method
-	virtual ~Secret() {};
+    char shifter(char, char);
 
-	//I added display here and took it out of the other areas.
-	void display() {
-		std::cout << message << std::endl;
-	}
+public:
+    Secret(std::string s = "Generic Message", bool flag = false) {
+        message = s;
+        isEncrypted = flag;
+    }
+
+    virtual void encrypt(std::string key) = 0; // Pure virtual method
+    virtual void decrypt(std::string key) = 0; // Pure virtual method
+    virtual ~Secret() {};
+
+    //I added display here and took it out of the other areas.
+    void display() {
+        std::cout << message << std::endl;
+    }
+
+    bool isUpperCase(char letter);
+
+    bool isLowerCase(char letter);
+
 
 }; // ----------- End of Secret Class -----------
 
 
 class Caesar : public Secret {
 public:
-	Caesar(std::string s = "Caesar Message") : Secret(s) {} //Constructor
+    Caesar(std::string s = "Caesar Message") : Secret(s) {} //Constructor
 
-	void encrypt(std::string key) override;
-	void decrypt(std::string key) override;
+    void encrypt(std::string key) override;
+
+    void decrypt(std::string key) override;
 
 }; // ----------- End of Caesar Class -----------
 
@@ -39,10 +49,11 @@ public:
 
 class Vigenere : public Secret {
 public:
-	Vigenere(std::string s = "Vigenere Message") : Secret(s) {} //Constructor
+    Vigenere(std::string s = "Vigenere Message") : Secret(s) {} //Constructor
 
-	void encrypt(std::string key) override;
-	void decrypt(std::string key) override;
+    void encrypt(std::string key) override;
+
+    void decrypt(std::string key) override;
 
 }; // ----------- End of Vigenere Class -----------
 
@@ -50,10 +61,11 @@ public:
 
 class Autokey : public Secret {
 public:
-	Autokey(std::string s = "Autokey Message") : Secret(s) {} //Constructor
+    Autokey(std::string s = "Autokey Message") : Secret(s) {} //Constructor
 
-	void encrypt(std::string key) override;
-	void decrypt(std::string key) override;
+    void encrypt(std::string key) override;
+
+    void decrypt(std::string key) override;
 
 }; // ----------- End of Autokey Class -----------
 
