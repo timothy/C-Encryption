@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "secret.hpp"
 
 
@@ -38,9 +37,8 @@ void Caesar::decrypt(std::string key) {
 void Vigenere::encrypt(std::string key) {
     int keyLength = (int) key.length();
     int msg_len = (int) message.length();
-    int count = 0;
 
-    for (int i = 0; i < msg_len; i++) {
+    for (int i = 0, count = 0; i < msg_len; i++) {
         message[i] = shifter(message[i], key[count]);
         count = count < keyLength ? count + 1 : 0;
     }
@@ -115,7 +113,7 @@ char Secret::shifter(char letter, int shift) {
 
     return (char) ((((letter + shift) - startOfAllDec) % totalPossibleValues) + startOfAllDec);
 }
-
+//82
 /**
  * @param letter this is the letter to be shifted.
  * @param shift this is the count of how many places over to shift letter.
@@ -125,26 +123,20 @@ char Secret::shifter(char letter, char shift) {
     if(letter == ' ' || letter < 32 || letter > 126){
         return letter;
     }
-    const int startOfUpperCase = 64;
-    const int startOfLowerCase = 96;
     const int totalPossibleLetters = 26;
-
-    const int startOfAllDec = 32;
     const int totalPossibleValues = 126;
+
     if (isUpperCase(letter)) {
         shift = (char) toupper(shift);
-        shift = (char) (shift - startOfUpperCase);
 
-        return (char) ((((letter + shift) - startOfUpperCase) % totalPossibleLetters) + startOfUpperCase);
+        return (char) ((letter + shift - 2 * 'A') % totalPossibleLetters + 'A');
     } else if (isLowerCase(letter)) {
         shift = (char) tolower(shift);
-        shift = (char) (shift - startOfLowerCase);
 
-        return (char) ((((letter + shift) - startOfLowerCase) % totalPossibleLetters) + startOfLowerCase);
+        return (char) ((letter + shift - 2 * 'a') % totalPossibleLetters + 'a');
     }
 
-    shift = (char) (shift - startOfAllDec);
-    return (char) ((((letter + shift) - startOfAllDec) % totalPossibleValues) + startOfAllDec);
+    return (char) (((letter + shift - 2 * ' ') % totalPossibleValues) + ' ');
 }
 
 /*
