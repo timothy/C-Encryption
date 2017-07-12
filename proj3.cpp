@@ -9,21 +9,15 @@
 
 int main() {
 
-	char a = ((('V' + 'H') - (64*2)) % 26) + 64;
-//	int numKey = std::stoi("13");
+	char a = (char) ('V' + 'H' - 2 * 'A') % 26 + 'A';
 
-	std::cout << 'V' + 'H' << std::endl;
 
-	std::cout << (char) (('V' + 'H') % 26) + 64 << std::endl;
-	std::cout << 'V' + 'H' << std::endl;
-	std::cout << 'V' + 'H' << std::endl;
+	std::cout << (char) ('V' + 'H' - 2 * 'A') % 26 + 'A' << std::endl;
 
 	std::cout << a << std::endl;
 
-
-
 	Caesar c("Caesar msg");// this works checked it with http://www.braingle.com/brainteasers/codes/caesar.php
-	Vigenere v("Vigenere msg");// This does not work... Tested with http://www.cs.du.edu/~snarayan/crypt/vigenere.html
+	Vigenere v("Vigenere msg");// This is very close but still has some edge cases that are off... Tested with http://www.cs.du.edu/~snarayan/crypt/vigenere.html
 
 	c.display();
 	c.encrypt("5");
